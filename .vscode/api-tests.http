@@ -1,0 +1,157 @@
+### PrintShop API Tests
+### Install "REST Client" extension (humao.rest-client) to run these
+
+@api = http://localhost:8000
+
+# ── Health ──────────────────────────────────────────────────────────
+### Health Check
+GET {{api}}/health
+
+
+# ── Products ────────────────────────────────────────────────────────
+### List all products
+GET {{api}}/products
+
+### Get single product
+GET {{api}}/products/{{productId}}
+
+### Get templates for product
+GET {{api}}/products/{{productId}}/templates
+
+
+# ── Auth ─────────────────────────────────────────────────────────────
+### Get Google login URL
+GET {{api}}/auth/google/login
+
+### Get current user (requires login cookie)
+GET {{api}}/auth/me
+
+### Logout
+POST {{api}}/auth/logout
+
+
+# ── Cart ─────────────────────────────────────────────────────────────
+### View cart
+GET {{api}}/cart
+
+### Add to cart
+POST {{api}}/cart
+Content-Type: application/json
+
+{
+  "product_variant_id": "{{variantId}}",
+  "template_id": "{{templateId}}"
+}
+
+### Remove cart item
+DELETE {{api}}/cart/{{cartItemId}}
+
+### Clear cart
+DELETE {{api}}/cart
+
+
+# ── Addresses ────────────────────────────────────────────────────────
+### List addresses
+GET {{api}}/addresses
+
+### Create address
+POST {{api}}/addresses
+Content-Type: application/json
+
+{
+  "full_name": "Test User",
+  "mobile": "9876543210",
+  "line1": "123 Main Street",
+  "city": "Chennai",
+  "district": "Chennai",
+  "state": "Tamil Nadu",
+  "pincode": "600001"
+}
+
+
+# ── Orders ───────────────────────────────────────────────────────────
+### Place order
+POST {{api}}/orders
+Content-Type: application/json
+
+{
+  "address_id": "{{addressId}}",
+  "payment_method": "cod"
+}
+
+### List my orders
+GET {{api}}/orders
+
+### Get order detail
+GET {{api}}/orders/{{orderId}}
+
+
+# ── Admin: Orders ─────────────────────────────────────────────────────
+### List all orders (admin)
+GET {{api}}/admin/orders
+
+### List pending orders only
+GET {{api}}/admin/orders?status=pending
+
+### Update order status
+POST {{api}}/admin/orders/{{orderId}}/status
+Content-Type: application/json
+
+{
+  "status": "inprogress",
+  "note": "Your order is being processed",
+  "is_public": true
+}
+
+### Update payment status
+PATCH {{api}}/admin/orders/{{orderId}}/payment?payment_status=paid
+
+
+# ── Admin: Products ───────────────────────────────────────────────────
+### List all products (admin)
+GET {{api}}/admin/products
+
+### Create product
+POST {{api}}/admin/products
+Content-Type: application/json
+
+{
+  "name": "Brochures",
+  "description": "Tri-fold brochures for business promotions",
+  "icon": "file",
+  "sort_order": 7
+}
+
+### Delete product
+DELETE {{api}}/admin/products/{{productId}}
+
+
+# ── Admin: Discounts ──────────────────────────────────────────────────
+### List discounts
+GET {{api}}/admin/discounts
+
+### Create discount
+POST {{api}}/admin/discounts
+Content-Type: application/json
+
+{
+  "name": "Weekend Special",
+  "type": "percentage",
+  "value": 12,
+  "applies_to": "both",
+  "trigger_type": "always",
+  "is_active": true
+}
+
+
+# ── Admin: Config ─────────────────────────────────────────────────────
+### Get app config
+GET {{api}}/admin/config
+
+### Update max upload size
+PUT {{api}}/admin/config/max_upload_size_mb
+Content-Type: application/json
+
+{
+  "value": "15"
+}

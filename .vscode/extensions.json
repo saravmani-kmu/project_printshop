@@ -1,0 +1,31 @@
+{
+  "recommendations": [
+    // ── Python / FastAPI ──────────────────────────────────────────
+    "ms-python.python",
+    "ms-python.debugpy",
+    "ms-python.pylance",
+    "ms-python.autopep8",
+
+    // ── React / TypeScript ─────────────────────────────────────────
+    "dbaeumer.vscode-eslint",
+    "esbenp.prettier-vscode",
+    "dsznajder.es7-react-js-snippets",
+    "bradlc.vscode-tailwindcss",
+
+    // ── Database ───────────────────────────────────────────────────
+    "qwtel.sqlite-viewer",
+
+    // ── API Testing ────────────────────────────────────────────────
+    "humao.rest-client",
+
+    // ── Git ────────────────────────────────────────────────────────
+    "eamodio.gitlens",
+    "mhutchie.git-graph",
+
+    // ── Productivity ───────────────────────────────────────────────
+    "streetsidesoftware.code-spell-checker",
+    "christian-kohler.path-intellisense",
+    "wayou.vscode-todo-highlight",
+    "gruntfuggly.todo-tree"
+  ]
+}

@@ -1,0 +1,43 @@
+{
+  "folders": [
+    {
+      "name": "PrintShop (Root)",
+      "path": "."
+    },
+    {
+      "name": "Backend (FastAPI)",
+      "path": "backend"
+    },
+    {
+      "name": "Frontend (React)",
+      "path": "frontend"
+    }
+  ],
+  "settings": {
+    "python.defaultInterpreterPath": "${workspaceFolder:Backend (FastAPI)}/.venv/Scripts/python.exe"
+  },
+  "extensions": {
+    "recommendations": [
+      "ms-python.python",
+      "ms-python.debugpy",
+      "ms-python.pylance",
+      "ms-python.autopep8",
+      "dbaeumer.vscode-eslint",
+      "esbenp.prettier-vscode",
+      "bradlc.vscode-tailwindcss",
+      "qwtel.sqlite-viewer",
+      "humao.rest-client",
+      "eamodio.gitlens"
+    ]
+  },
+  "launch": {
+    "version": "0.2.0",
+    "compounds": [
+      {
+        "name": "Debug: Full Stack",
+        "configurations": ["Debug: FastAPI Backend", "Debug: Frontend (Chrome)"],
+        "stopAll": true
+      }
+    ]
+  }
+}

@@ -1,0 +1,24 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(mkdir -p \"d:/project_kyog/git/project_printshop/backend/app/models\" \"d:/project_kyog/git/project_printshop/backend/app/schemas\" \"d:/project_kyog/git/project_printshop/backend/app/routers/admin\" \"d:/project_kyog/git/project_printshop/backend/app/services\" \"d:/project_kyog/git/project_printshop/backend/app/core\" \"d:/project_kyog/git/project_printshop/backend/app/utils\" \"d:/project_kyog/git/project_printshop/backend/migrations/versions\" \"d:/project_kyog/git/project_printshop/backend/uploads\" \"d:/project_kyog/git/project_printshop/backend/seeds\" \"d:/project_kyog/git/project_printshop/backend/tests\")",
+      "Bash(npm create *)",
+      "Bash(npm install *)",
+      "Bash(npx tailwindcss *)",
+      "Bash(node_modules/.bin/tailwindcss init *)",
+      "Bash(npm run *)",
+      "Bash(curl -s -o /dev/null -w \"%{http_code}\" http://localhost:5173)",
+      "PowerShell(netstat -ano)",
+      "PowerShell(Get-Process -Id 12760)",
+      "PowerShell(Stop-Process -Id 12760 -Force -ErrorAction SilentlyContinue)",
+      "Bash(python -m venv .venv)",
+      "Bash(mkdir -p \"d:/project_kyog/git/project_printshop/.vscode\")",
+      "Bash(git remote *)",
+      "Bash(gh auth *)"
+    ],
+    "additionalDirectories": [
+      "d:\\project_kyog\\git\\project_printshop\\backend\\app",
+      "d:\\project_kyog\\git\\project_printshop\\.vscode"
+    ]
+  }
+}

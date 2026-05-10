@@ -1,0 +1,110 @@
+{
+  "version": "0.2.0",
+  "configurations": [
+    // ── Backend: FastAPI Debug ─────────────────────────────────────
+    {
+      "name": "Debug: FastAPI Backend",
+      "type": "debugpy",
+      "request": "launch",
+      "module": "uvicorn",
+      "args": [
+        "app.main:app",
+        "--reload",
+        "--host", "0.0.0.0",
+        "--port", "8000"
+      ],
+      "cwd": "${workspaceFolder}/backend",
+      "python": "${workspaceFolder}/backend/.venv/Scripts/python.exe",
+      "env": {
+        "PYTHONPATH": "${workspaceFolder}/backend"
+      },
+      "console": "integratedTerminal",
+      "justMyCode": false,
+      "presentation": {
+        "group": "backend",
+        "order": 1
+      }
+    },
+    // ── Backend: Run current Python file ──────────────────────────
+    {
+      "name": "Debug: Python File",
+      "type": "debugpy",
+      "request": "launch",
+      "program": "${file}",
+      "cwd": "${workspaceFolder}/backend",
+      "python": "${workspaceFolder}/backend/.venv/Scripts/python.exe",
+      "env": {
+        "PYTHONPATH": "${workspaceFolder}/backend"
+      },
+      "console": "integratedTerminal",
+      "justMyCode": true,
+      "presentation": {
+        "group": "backend",
+        "order": 2
+      }
+    },
+    // ── Backend: Seed Database ─────────────────────────────────────
+    {
+      "name": "Debug: Seed Database",
+      "type": "debugpy",
+      "request": "launch",
+      "module": "seeds.seed_data",
+      "cwd": "${workspaceFolder}/backend",
+      "python": "${workspaceFolder}/backend/.venv/Scripts/python.exe",
+      "env": {
+        "PYTHONPATH": "${workspaceFolder}/backend"
+      },
+      "console": "integratedTerminal",
+      "presentation": {
+        "group": "backend",
+        "order": 3
+      }
+    },
+
+    // ── Frontend: Chrome Debug ─────────────────────────────────────
+    {
+      "name": "Debug: Frontend (Chrome)",
+      "type": "chrome",
+      "request": "launch",
+      "url": "http://localhost:5173",
+      "webRoot": "${workspaceFolder}/frontend/src",
+      "sourceMapPathOverrides": {
+        "/@fs/*": "${workspaceFolder}/frontend/src/*",
+        "/src/*": "${workspaceFolder}/frontend/src/*"
+      },
+      "presentation": {
+        "group": "frontend",
+        "order": 1
+      }
+    },
+    // ── Frontend: Edge Debug ───────────────────────────────────────
+    {
+      "name": "Debug: Frontend (Edge)",
+      "type": "msedge",
+      "request": "launch",
+      "url": "http://localhost:5173",
+      "webRoot": "${workspaceFolder}/frontend/src",
+      "sourceMapPathOverrides": {
+        "/@fs/*": "${workspaceFolder}/frontend/src/*",
+        "/src/*": "${workspaceFolder}/frontend/src/*"
+      },
+      "presentation": {
+        "group": "frontend",
+        "order": 2
+      }
+    }
+  ],
+
+  // ── Compound: Full Stack Debug ────────────────────────────────
+  "compounds": [
+    {
+      "name": "Debug: Full Stack",
+      "configurations": ["Debug: FastAPI Backend", "Debug: Frontend (Chrome)"],
+      "presentation": {
+        "group": "fullstack",
+        "order": 1
+      },
+      "stopAll": true
+    }
+  ]
+}
