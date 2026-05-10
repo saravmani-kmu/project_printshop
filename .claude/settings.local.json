@@ -14,7 +14,11 @@
       "Bash(python -m venv .venv)",
       "Bash(mkdir -p \"d:/project_kyog/git/project_printshop/.vscode\")",
       "Bash(git remote *)",
-      "Bash(gh auth *)"
+      "Bash(gh auth *)",
+      "PowerShell(git -C \"d:\\\\project_kyog\\\\git\\\\project_printshop\" remote -v)",
+      "PowerShell(git -C \"d:\\\\project_kyog\\\\git\\\\project_printshop\" remote add origin https://github.com/saravmani-kmu/project_printshop.git)",
+      "PowerShell(git -C \"d:\\\\project_kyog\\\\git\\\\project_printshop\" push -u origin main 2>&1)",
+      "PowerShell(git -C \"d:\\\\project_kyog\\\\git\\\\project_printshop\" log --oneline)"
     ],
     "additionalDirectories": [
       "d:\\project_kyog\\git\\project_printshop\\backend\\app",
