@@ -7,9 +7,29 @@ settings = get_settings()
 
 
 def send_email(to: str, subject: str, html_body: str):
-    if not settings.SMTP_USER:
+    if settings.RESEND_API_KEY:
+        _send_via_resend(to, subject, html_body)
+    elif settings.SMTP_USER:
+        _send_via_smtp(to, subject, html_body)
+    else:
         print(f"[EMAIL STUB] To: {to} | Subject: {subject}")
-        return
+
+
+def _send_via_resend(to: str, subject: str, html_body: str):
+    try:
+        import resend
+        resend.api_key = settings.RESEND_API_KEY
+        resend.Emails.send({
+            "from": f"{settings.SMTP_FROM_NAME} <{settings.RESEND_FROM_EMAIL}>",
+            "to": [to],
+            "subject": subject,
+            "html": html_body,
+        })
+    except Exception as e:
+        print(f"[EMAIL ERROR] Resend failed to send to {to}: {e}")
+
+
+def _send_via_smtp(to: str, subject: str, html_body: str):
     try:
         msg = MIMEMultipart("alternative")
         msg["Subject"] = subject
@@ -23,7 +43,7 @@ def send_email(to: str, subject: str, html_body: str):
             server.login(settings.SMTP_USER, settings.SMTP_PASSWORD)
             server.sendmail(settings.SMTP_USER, to, msg.as_string())
     except Exception as e:
-        print(f"[EMAIL ERROR] Failed to send to {to}: {e}")
+        print(f"[EMAIL ERROR] SMTP failed to send to {to}: {e}")
 
 
 def send_order_confirmation(user_email: str, user_name: str, order_number: str, total: float):

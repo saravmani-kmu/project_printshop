@@ -27,9 +27,9 @@ services:
         sync: false
       - key: GOOGLE_REDIRECT_URI
         sync: false
-      - key: SMTP_USER
+      - key: RESEND_API_KEY
         sync: false
-      - key: SMTP_PASSWORD
+      - key: RESEND_FROM_EMAIL
         sync: false
       - key: ADMIN_APPROVAL_EMAIL
         sync: false

@@ -32,6 +32,9 @@ class Settings(BaseSettings):
     SMTP_PASSWORD: str = ""
     SMTP_FROM_NAME: str = "PrintShop"
 
+    RESEND_API_KEY: str = ""
+    RESEND_FROM_EMAIL: str = "onboarding@resend.dev"
+
     ADMIN_APPROVAL_EMAIL: str = ""
     ADMIN_APPROVAL_TOKEN_EXPIRE_HOURS: int = 1
 
