@@ -75,8 +75,10 @@ def refresh_token(response: Response, refresh_token: str | None = Cookie(default
 
 @router.post("/logout")
 def logout(response: Response):
-    response.delete_cookie("access_token")
-    response.delete_cookie("refresh_token")
+    is_prod = not settings.is_dev
+    samesite = "none" if is_prod else "lax"
+    response.delete_cookie("access_token", httponly=True, secure=is_prod, samesite=samesite)
+    response.delete_cookie("refresh_token", httponly=True, secure=is_prod, samesite=samesite)
     return {"ok": True}
 
 
@@ -111,5 +113,6 @@ def get_me(user: User = Depends(get_current_user), db: Session = Depends(get_db)
 
 def _set_cookies(response: Response, access_token: str, refresh_token: str):
     is_prod = not settings.is_dev
-    response.set_cookie("access_token", access_token, httponly=True, secure=is_prod, samesite="lax", max_age=settings.ACCESS_TOKEN_EXPIRE_MINUTES * 60)
-    response.set_cookie("refresh_token", refresh_token, httponly=True, secure=is_prod, samesite="lax", max_age=settings.REFRESH_TOKEN_EXPIRE_DAYS * 86400)
+    samesite = "none" if is_prod else "lax"
+    response.set_cookie("access_token", access_token, httponly=True, secure=is_prod, samesite=samesite, max_age=settings.ACCESS_TOKEN_EXPIRE_MINUTES * 60)
+    response.set_cookie("refresh_token", refresh_token, httponly=True, secure=is_prod, samesite=samesite, max_age=settings.REFRESH_TOKEN_EXPIRE_DAYS * 86400)
