@@ -1,13 +1,41 @@
+databases:
+  - name: printshop-db
+    databaseName: printshop
+    user: printshop
+    plan: free
+
 services:
   - type: web
     name: printshop-api
     runtime: python
+    rootDir: backend
     buildCommand: pip install -r requirements.txt
     startCommand: uvicorn app.main:app --host 0.0.0.0 --port $PORT
+    plan: free
     envVars:
       - key: PYTHONPATH
         value: .
-      - key: ENVIRONMENT
+      - key: APP_ENV
         value: production
       - key: DATABASE_URL
-        value: sqlite:///./printshop.db
+        fromDatabase:
+          name: printshop-db
+          property: connectionString
+      - key: SECRET_KEY
+        generateValue: true
+      - key: CLAMAV_ENABLED
+        value: "false"
+      - key: FRONTEND_URL
+        sync: false
+      - key: GOOGLE_CLIENT_ID
+        sync: false
+      - key: GOOGLE_CLIENT_SECRET
+        sync: false
+      - key: GOOGLE_REDIRECT_URI
+        sync: false
+      - key: SMTP_USER
+        sync: false
+      - key: SMTP_PASSWORD
+        sync: false
+      - key: ADMIN_APPROVAL_EMAIL
+        sync: false
