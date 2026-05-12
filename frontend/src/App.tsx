@@ -24,6 +24,7 @@ import AdminOrderDetail from "./pages/admin/AdminOrderDetail";
 import AdminProducts from "./pages/admin/AdminProducts";
 import AdminDiscounts from "./pages/admin/AdminDiscounts";
 import AdminUsers from "./pages/admin/AdminUsers";
+import AdminAdmins from "./pages/admin/AdminAdmins";
 import AdminConfig from "./pages/admin/AdminConfig";
 import AdminRegister from "./pages/admin/AdminRegister";
 
@@ -94,6 +95,7 @@ export default function App() {
             <Route path="products" element={<AdminProducts />} />
             <Route path="discounts" element={<AdminDiscounts />} />
             <Route path="users" element={<AdminUsers />} />
+            <Route path="admins" element={<AdminAdmins />} />
             <Route path="config" element={<AdminConfig />} />
           </Route>
         </Route>

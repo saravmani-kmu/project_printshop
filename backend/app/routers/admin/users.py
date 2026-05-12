@@ -61,3 +61,15 @@ def approve_sub_admin(admin_id: str, db: Session = Depends(get_db), super_admin:
     target.approved_at = datetime.utcnow()
     db.commit()
     return {"ok": True}
+
+
+@router.patch("/admins/{admin_id}/reject")
+def reject_sub_admin(admin_id: str, db: Session = Depends(get_db), super_admin: Admin = Depends(get_super_admin)):
+    target = db.query(Admin).filter(Admin.id == admin_id).first()
+    if not target:
+        raise HTTPException(status_code=404, detail="Admin not found")
+    if target.id == super_admin.id:
+        raise HTTPException(status_code=400, detail="Cannot reject yourself")
+    target.status = AdminStatus.rejected
+    db.commit()
+    return {"ok": True}
