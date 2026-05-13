@@ -22,7 +22,8 @@ limiter = Limiter(key_func=get_remote_address)
 
 @asynccontextmanager
 async def lifespan(app: FastAPI):
-    Base.metadata.create_all(bind=engine)
+    if settings.is_dev:
+        Base.metadata.create_all(bind=engine)
     Path(settings.UPLOADS_DIR).mkdir(parents=True, exist_ok=True)
     yield
 
