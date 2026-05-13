@@ -8,7 +8,7 @@ from app.core.dependencies import get_current_admin
 from app.schemas.product import ProductCreate, ProductUpdate, VariantCreate, VariantUpdate
 from pydantic import BaseModel
 
-router = APIRouter(prefix="/admin/products", tags=["admin-products"])
+router = APIRouter(prefix="/admin/productl̥s", tags=["admin-products"])
 
 
 class TemplateCreate(BaseModel):
